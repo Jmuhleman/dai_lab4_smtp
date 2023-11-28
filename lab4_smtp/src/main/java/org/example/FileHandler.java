@@ -52,14 +52,14 @@ public class FileHandler {
 
     public String fetchMail() {
         Random rand = new Random();
-        int nth = rand.nextInt(sizeMailsFile - 1);
+        int nth = rand.nextInt(sizeMailsFile);
         return contentMails[nth];
     }
 
     public Message fetchMessage() {
         Random rand = new Random();
         //tirage de l'index au sort.
-        int headIdx = rand.nextInt(sizeMessageFile - 1);
+        int headIdx = rand.nextInt(sizeMessageFile);
         //Si l'index de l'objet du message est impair alors on est sur le corps du message -> reculer
         //et affecter son body.
         if (headIdx % 2 != 0) {

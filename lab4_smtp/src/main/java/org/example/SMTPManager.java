@@ -48,14 +48,16 @@ public class SMTPManager {
             out.flush();
             System.out.println(in.readLine());
 
-            out.write(rcpt + listeMails.get(1) + close + newLine);
-            out.flush();
-            System.out.println(in.readLine());
+            for (int k = 0 ; k < listeMails.size() - 1 ; ++k) {
+                out.write(rcpt + listeMails.get(k + 1) + close + newLine);
+                out.flush();
+                System.out.println(in.readLine());
+            }
 
             out.write(data + newLine);
             out.flush();
 
-            out.write(data + message.head() + message.body() + endData);
+            out.write(message.head() + message.body() + endData);
             out.flush();
             System.out.println(in.readLine());
 
