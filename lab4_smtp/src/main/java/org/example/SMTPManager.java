@@ -2,55 +2,63 @@ package org.example;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class SMTPManager {
+    private String ipAdress;
+    private int port;
+    private String from;
+    private String rcpt;
+    private String data;
+    private String quit;
+    private String close;
+    private String endData;
+    private String newLine;
+    SMTPManager(String ip, int p){
+        ipAdress = ip;
+        port = p;
+        from = "MAIL FROM:<";
+        rcpt = "RCPT TO:<";
+        data = "DATA";
+        quit = "QUIT";
+        close = ">";
+        endData = "\r\n.\r\n";
+        newLine = "\n";
+    }
 
-    public void sendNMails(ArrayList<Message> listeMessages, ArrayList<String> listeMails) {
+    public void sendNMails(Message message, ArrayList<String> listeMails) {
 
 
-        try (Socket socket = new Socket("localhost", 1025);
+        try (Socket socket = new Socket(ipAdress, port);
              var in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
              var out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8))) {
 
             System.out.println(in.readLine());
-            out.write("EHLO localhost\n");
+
+            out.write("EHLO localhost" + newLine);
             out.flush();
 
-
-            String[] msgToBeSent = new String[4];
-
-            msgToBeSent[0] = "MAIL FROM: <shakira@music.com>";
-            msgToBeSent[1] = "RCPT TO: <shakira@music.com>";
-            msgToBeSent[2] = "DATA Bonjour, petite blague cynique\r\n.\r\n";
-            msgToBeSent[3] = "QUIT";
-
-
-            StringBuilder textResponse = new StringBuilder();
-            String response;
-
-            int idx = 0;
-            response = in.readLine();
-
-            System.out.println(response);
-
-            while (idx != -1) {
-
-                response = in.readLine();
-                idx = response.indexOf('-');
-                textResponse.append(response).append("\n");
-            }
-            System.out.println(textResponse);
-
-            for (int k = 0; k < 4; ++k) {
-                out.write(msgToBeSent[k] + "\n");
-                out.flush();
-                response = in.readLine();
-                System.out.println(response);
+            System.out.println(in.readLine());
+            for (String line = "-" ; line.contains("-") ; line = in.readLine()){
 
             }
+
+            out.write(from + listeMails.get(0) + close + newLine);
+            out.flush();
+            System.out.println(in.readLine());
+
+            out.write(rcpt + listeMails.get(1) + close + newLine);
+            out.flush();
+            System.out.println(in.readLine());
+
+            out.write(data + newLine);
+            out.flush();
+
+            out.write(data + message.head() + message.body() + endData);
+            out.flush();
+            System.out.println(in.readLine());
+
 
 
         }catch (IOException e){
