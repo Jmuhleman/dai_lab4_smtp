@@ -27,10 +27,5 @@ public class MischiefMailer {
             //Envoyer en une fois x-1 mail avec idx:0 comme expéditeur au x-1 receveurs
             SMTPm.sendNMails(msg, listVic);
         }
-
-
-
-
-
     }
 }

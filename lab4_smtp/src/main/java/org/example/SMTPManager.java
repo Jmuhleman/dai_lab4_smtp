@@ -40,9 +40,7 @@ public class SMTPManager {
             out.flush();
 
             System.out.println(in.readLine());
-            for (String line = "-" ; line.contains("-") ; line = in.readLine()){
-
-            }
+            for (String line = "-" ; line.contains("-") ; line = in.readLine()){}
 
             out.write(from + listeMails.get(0) + close + newLine);
             out.flush();
@@ -64,7 +62,7 @@ public class SMTPManager {
 
 
         }catch (IOException e){
-
+            System.out.println("erreur lors de la connection avec ton SMTP mon coco\n");
         }
 
 
