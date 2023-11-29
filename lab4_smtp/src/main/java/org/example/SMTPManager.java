@@ -56,12 +56,15 @@ public class SMTPManager {
             out.flush();
             System.out.println(in.readLine());
 
-            out.write("Subject: " + message.head() + newLine);
             out.write("Content-Type: text/plain; charset=UTF-8" + newLine);
+            out.write("Subject: " + message.head() + newLine);
+            out.write("Content-Type: text/plain; charset=UTF-8" + newLine + newLine);
             out.write( message.body() + endData);
             out.flush();
             System.out.println(in.readLine());
 
+            out.write(quit + newLine);
+            out.flush();
 
 
         }catch (IOException e){
