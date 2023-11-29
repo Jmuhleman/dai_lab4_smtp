@@ -6,15 +6,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class SMTPManager {
-    private String ipAdress;
-    private int port;
-    private String from;
-    private String rcpt;
-    private String data;
-    private String quit;
-    private String close;
-    private String endData;
-    private String newLine;
+    private final String ipAdress;
+    private final int port;
+    private final String from;
+    private final String rcpt;
+    private final String data;
+    private final String quit;
+    private final String close;
+    private final String endData;
+    private final String newLine;
     SMTPManager(String ip, int p){
         ipAdress = ip;
         port = p;
