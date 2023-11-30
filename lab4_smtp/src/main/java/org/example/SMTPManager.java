@@ -47,6 +47,7 @@ public class SMTPManager {
             out.flush();
             System.out.println(in.readLine());
             String dst = "";
+
             for (int k = 0 ; k < listeMails.size() - 1 ; ++k) {
                 out.write(rcpt + listeMails.get(k + 1) + close + newLine);
                 out.flush();
@@ -64,11 +65,12 @@ public class SMTPManager {
             out.write("To: " + dst + newLine);
             out.flush();
 
-            out.write("Date: " + " Tue, 18 Nov 2014 15:57:11 +0000"  + newLine);
+            out.write("Date: " + "Mon, 1 Apr 2023" + newLine);
             out.flush();
 
             out.write("Content-Type: text/plain; charset=utf-8" +  newLine);
-            out.write("Subject: " + "=?utf-8?B?" + Base64.getEncoder().encodeToString(message.head().getBytes()) + "?=" + newLine + newLine);
+            out.write("Subject: " + "=?utf-8?B?" + Base64.getEncoder().encodeToString(message.head().getBytes())
+                    + "?=" + newLine + newLine);
 
             out.flush();
             out.write( message.body() + endData);

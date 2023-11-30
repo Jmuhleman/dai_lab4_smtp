@@ -9,6 +9,7 @@ public class MischiefMailer {
 
         FileHandler fh = new FileHandler("src\\main\\ressources\\victims.txt",
                 "src\\main\\ressources\\messages.txt", StandardCharsets.UTF_8);
+
         Random ran = new Random();
         SMTPManager SMTPm = new SMTPManager("localhost", 1025);
 
