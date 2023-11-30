@@ -7,12 +7,16 @@ import java.util.Random;
 public class MischiefMailer {
     public static void main(String[] args) throws IOException {
 
-        FileHandler fh = new FileHandler("src\\main\\ressources\\victims.txt",
-                "src\\main\\ressources\\messages.txt", StandardCharsets.UTF_8);
+        if (args.length < 3){
+            System.out.println("Vous devez donner un nombre de groupe !\n");
+            System.out.println("Le programme va se terminer\n");
+            return;
+        }
+
+        FileHandler fh = new FileHandler(args[1], args[2], StandardCharsets.UTF_8);
 
         Random ran = new Random();
         SMTPManager SMTPm = new SMTPManager("localhost", 1025);
-
 
         // pour chaque groupe qui va être formé
         for (int k = 0; k < Integer.parseInt(args[0]); ++k) {
