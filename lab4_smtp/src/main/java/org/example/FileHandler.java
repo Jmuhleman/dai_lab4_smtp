@@ -31,14 +31,14 @@ public class FileHandler {
                 ++sizeMessageFile;
             }
             //contentMails = new String[fileSize + 1];
-            contentMessages = text.toString().split(",");
+            contentMessages = text.toString().split("\\$");
             //charger le contenu du fichier des mails
             StringBuilder text2 = new StringBuilder();
             for (String line; (line = fileMails.readLine()) != null; ) {
                 text2.append(line);
                 ++sizeMailsFile;
             }
-            contentMails = text2.toString().split(",");
+            contentMails = text2.toString().split("\\$");
         } catch (IOException e) {
             System.out.println("Error opening file: ->" + e.getMessage());
         } finally {
