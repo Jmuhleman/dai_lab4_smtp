@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class SMTPManager {
     private final String ipAdress;
@@ -67,9 +68,9 @@ public class SMTPManager {
             out.flush();
 
             out.write("Content-Type: text/plain; charset=utf-8" +  newLine);
-            out.write("Subject: " + message.head() + newLine + newLine);
-            out.flush();
+            out.write("Subject: " + "=?utf-8?B?" + Base64.getEncoder().encodeToString(message.head().getBytes()) + "?=" + newLine + newLine);
 
+            out.flush();
             out.write( message.body() + endData);
             out.flush();
             System.out.println(in.readLine());
