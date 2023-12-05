@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -26,7 +27,7 @@ public class FileHandler {
             fileMessages = new BufferedReader(new InputStreamReader(new FileInputStream(messageFile), enc));
             //charger le contenu du fichier de messages
             StringBuilder text = new StringBuilder();
-            for (String line; (line = fileMessages.readLine()) != null; ) {
+            for (String line; !Objects.equals(line = fileMessages.readLine(), ""); ) {
                 text.append(line);
                 ++sizeMessageFile;
             }
@@ -34,7 +35,7 @@ public class FileHandler {
             contentMessages = text.toString().split("\\$");
             //charger le contenu du fichier des mails
             StringBuilder text2 = new StringBuilder();
-            for (String line; (line = fileMails.readLine()) != null; ) {
+            for (String line; !Objects.equals(line = fileMails.readLine(), ""); ) {
                 text2.append(line);
                 ++sizeMailsFile;
             }
