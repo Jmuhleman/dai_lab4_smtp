@@ -52,7 +52,7 @@ java -jar lab4_smtp-1.0-SNAPSHOT.jar 3 C:\Users\crist\laboDAI\dai_lab4_smtp\lab4
 * fourth parameter: localhost
 * fifth parameter : 1025
 ## 4. Description of our implementation
-![img.png](lab4_smtp%2Fsrc%2Fmain%2Fressources%2Ffigures%2Fimg.png)
+![DiagrammeUML.png](lab4_smtp%2Fsrc%2Fmain%2Fressources%2Ffigures%2FDiagrammeUML.png)
 We have implemented our program in the following way:
 * The `MischiefMailer` class is the main class of our program. It is responsible for calling the different classes which are responsible for the different tasks of our program.
 Here's a summary of its functionality:
