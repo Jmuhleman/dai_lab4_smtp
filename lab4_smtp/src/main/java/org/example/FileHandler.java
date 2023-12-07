@@ -43,7 +43,6 @@ public class FileHandler {
         } catch (IOException e) {
             System.out.println("Error opening file: ->" + e.getMessage());
         } finally {
-            //TODO ajuster ce bordel
             assert fileMails != null;
             fileMails.close();
             assert fileMessages != null;
